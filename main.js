@@ -1,42 +1,48 @@
 "use strict";
 const Suralar = document.querySelector(".Suralar");
+const box__Left = document.querySelector(".box__Left");
+const yozuvKurinish = document.querySelector(".yozuvKurinish");
+let ArrBox = [];
 
+// window.innerHeight
 const fetchFunc = async function () {
-  let a = await fetch(`http://api.alquran.cloud/v1/surah`);
-  let aJson = await a.json();
-  renderFunc(aJson.data);
-  console.log(aJson);
+  let a = 1;
+  let b = 10;
+  box__Left.addEventListener("scroll", (e) => {});
+  for (let i = a; i < b; i++) {
+    let b = await fetch(`https://api.quran.sutanlab.id/surah/${i}`);
+    let bJson = await b.json();
+    ArrBox.push(bJson);
+    renderFunc(bJson.data);
+  }
 };
 fetchFunc();
-const renderFunc = (Arr) => {
-  let ArrBox = [];
-  let findEl;
-  Arr.forEach((obj) => {
-    ArrBox.push(obj);
-    let html = ` <div class="card"  id="${obj.number}">
-<p class="num">${obj.name}</p>
-<p class="nomi">${obj.englishName}</p>
+let findEl;
+const renderFunc = (obj) => {
+  let html = ` <div class="card"  id="${obj.name.transliteration.en}">
+<p class="num">${obj.name.long}</p>
+<p class="nomi">${obj.name.transliteration.en}</p>
 </div>`;
-    Suralar.insertAdjacentHTML("afterbegin", html);
-    const el = document.querySelector(".card");
-    el.addEventListener("click", () => {
-      findEl = el.id;
-      let topilgan = ArrBox.find((el) => {
-        return findEl == el.number;
-      });
-      // console.log(topilgan.englishName);
-      for (let i = 1; i < 10; i++) {
-        fetch(
-          `https://api.alquran.cloud/v1/ayah/${i}/editions/quran-uthmani,uz.sodik`
-        )
-          .then((res) => res.json())
-          .then((data) => {
-            console.log(data.data[0].surah.englishName);
-            if (data.data[0].surah.englishName == topilgan.englishName) {
-              console.log(data.data[0].surah.englishName);
-            }
-          });
-      }
+  Suralar.insertAdjacentHTML("afterbegin", html);
+  const el = document.querySelector(".card");
+  el.addEventListener("click", () => {
+    yozuvKurinish.innerHTML = "";
+    findEl = el.id;
+    let filter = ArrBox.find((val) => {
+      return val.data.name.transliteration.en == findEl;
     });
+    let html2 = `<h2 class="til">${filter.data.name.long}</h2>
+     ${filter.data.verses.forEach((element) => {
+       let parag = ` <p class="manolri">${element.text.arab}</p>
+       <p class="manolri">${element.text.transliteration.en}</p>
+       <p class="tafsiv">Tafsiv</p>
+       <p class="manolri2">${element.translation.en}</p>
+       <audio controls class="audio">
+            <source src="${element.audio.secondary[0]}" type="audio/ogg">
+            <source src="${element.audio.secondary[0]}" type="audio/mpeg">
+          </audio>`;
+
+       yozuvKurinish.insertAdjacentHTML("beforeend", parag);
+     })}`;
   });
 };

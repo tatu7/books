@@ -21,7 +21,7 @@ body {
 }
 .box__Left {
   width: 30%;
-  height: 100vh;
+  height: auto;
   overflow-y: auto;
   background-image: url(colorful-abstract-background-pastel-gradient-texture.jpg);
 }
@@ -68,6 +68,7 @@ body {
   font-style: italic;
   font-weight: 600;
   margin: 2rem 0;
+  cursor: pointer;
 }
 
 .box__Right {
@@ -88,17 +89,33 @@ body {
 }
 .manolri {
   width: 90%;
-  font-size: 2.5rem;
-  margin: 2rem auto;
+  font-size: 2rem;
+  margin: 1rem auto;
   color: black;
-  margin-bottom: 10rem;
+  margin-bottom: 3rem;
+}
+.tafsiv {
+  width: 90%;
+  font-size: 2rem;
+  margin: 1rem auto;
+  color: black;
+}
+.manolri2 {
+  width: 95%;
+  font-size: 1.5rem;
+  margin: 0.7rem auto;
+  color: #555;
+  margin-bottom: 1.3rem;
 }
 .til {
-  font-size: 4rem;
+  font-size: 3rem;
   text-align: center;
   color: coral;
 }
 
 .audio {
-  width: 100%;
+  display: block;
+  margin: 28px auto;
+  width: 84%;
+  height: 35px;
 }
