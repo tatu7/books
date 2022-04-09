@@ -53,15 +53,19 @@ const renderFunc = (obj, uzb, nomi) => {
       let filter = ArrBox.find((val) => {
         return val.data.name.transliteration.en == findEl;
       });
-      for (let i = 1; i < uzbArr.length; i++) {
+      for (let i = 1; i < ArrBox.length; i++) {
         let parag = ` <p class="manolri">${filter.data.verses[i].text.arab}</p>
         <p class="manolri">${filter.data.verses[i].text.transliteration.en}</p>
         <p class="tafsiv">Tafsiv</p>
         <p class="manolri2">${filter.data.verses[i].translation.en}</p>
-        <p class="manolri2">${uzbArr[i].text}</p>
+        <p class="manolri2">${uzbArr[i] ? uzbArr[i].text : ""}</p>
         <audio controls class="audio">
-             <source src="${filter.data.verses[i].audio.secondary[0]}" type="audio/ogg">
-             <source src="${filter.data.verses[i].audio.secondary[0]}" type="audio/mpeg">
+             <source src="${
+               filter.data.verses[i].audio.secondary[0]
+             }" type="audio/ogg">
+             <source src="${
+               filter.data.verses[i].audio.secondary[0]
+             }" type="audio/mpeg">
            </audio>`;
         yozuvKurinish.insertAdjacentHTML("beforeend", parag);
       }
