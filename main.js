@@ -15,7 +15,7 @@ const fetchFunc = async function () {
   );
   let uzbJson = await uzb.json();
 
-  for (let i = a; i < b; i++) {
+  for (let i = a; i <= b; i++) {
     let b = await fetch(`https://api.quran.sutanlab.id/surah/${i}`);
     let bJson = await b.json();
     ArrBox.push(bJson);
