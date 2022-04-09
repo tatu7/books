@@ -6,7 +6,7 @@ let ArrBox = [];
 
 // window.innerHeight
 const fetchFunc = async function () {
-  let a = 1;
+  let a = 0;
   let b = 114;
   let nomi = await fetch(`https://api.quran.sutanlab.id/surah`);
   let nomiJson = await nomi.json();
