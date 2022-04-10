@@ -1,10 +1,27 @@
 "use strict";
 const Suralar = document.querySelector(".Suralar");
 const box__Left = document.querySelector(".box__Left");
+const box__Right = document.querySelector(".box__Right");
 const yozuvKurinish = document.querySelector(".yozuvKurinish");
+const btnMenu = document.querySelector(".btnMenu");
 let ArrBox = [];
 
 // window.innerHeight
+let i = 1;
+btnMenu.addEventListener("click", () => {
+  if (i == 1) {
+    box__Left.style.display = "block";
+    box__Left.style.opacity = "1";
+    btnMenu.textContent = "Close";
+    i = 0;
+  } else if (i == 0) {
+    box__Left.style.display = "none";
+    box__Left.style.opacity = "0";
+    btnMenu.textContent = "Menu";
+    i = 1;
+  }
+});
+
 const fetchFunc = async function () {
   let a = 1;
   let b = 114;
@@ -21,11 +38,6 @@ const fetchFunc = async function () {
     ArrBox.push(bJson);
     renderFunc(bJson.data, uzbJson.quran, nomiJson.data);
   }
-  // .forEach((val) => {
-  //   if (val.chapter == 2) {
-  //     console.log(val);
-  //   }
-  // });
 };
 fetchFunc();
 let findEl;
@@ -48,16 +60,20 @@ const renderFunc = (obj, uzb, nomi) => {
     div.appendChild(p2);
     Suralar.append(div);
     div.addEventListener("click", () => {
+      console.log(ArrBox);
+      box__Right.style.display = "block";
       yozuvKurinish.innerHTML = "";
       findEl = div.id;
       let filter = ArrBox.find((val) => {
         return val.data.name.transliteration.en == findEl;
       });
       for (let i = 1; i < ArrBox.length; i++) {
-        let parag = ` <p class="manolri">${filter.data.verses[i].text.arab}</p>
+        let parag = ` 
+        <p class="manolri">${i} ${filter.data.verses[i].text.arab}</p>
         <p class="manolri">${filter.data.verses[i].text.transliteration.en}</p>
-        <p class="tafsiv">Tafsiv</p>
+        <p class="tafsiv">English</p>
         <p class="manolri2">${filter.data.verses[i].translation.en}</p>
+        <p class="tafsiv">Uzbek</p>
         <p class="manolri2">${uzbArr[i] ? uzbArr[i].text : ""}</p>
         <audio controls class="audio">
              <source src="${

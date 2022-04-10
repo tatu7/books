@@ -7,12 +7,12 @@ html {
 }
 body {
   font-family: sans-serif;
-  background-image: url(background.jpg);
+  width: 100%;
+  height: 90vh;
+  background-image: url(./333.webp);
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
-  width: 100%;
-  height: 90vh;
 }
 .container {
   width: 100%;
@@ -27,8 +27,8 @@ body {
 }
 .btnMenu {
   position: absolute;
-  width: 5rem;
-  height: 5rem;
+  width: 3rem;
+  height: 3rem;
   border-radius: 50%;
   border: none;
   background-color: black;
@@ -38,6 +38,8 @@ body {
   color: white;
   left: 1rem;
   position: fixed;
+  font-size: 1rem;
+  display: none;
 }
 .btnMenu:active {
   outline: 0.5rem solid black;
@@ -77,6 +79,7 @@ body {
   padding: 1.4rem;
 }
 .box__Right {
+  display: none;
   width: 70%;
   margin: 0 auto;
   overflow-y: auto;
@@ -134,4 +137,70 @@ body {
   padding: 1rem;
   border: none;
   border-radius: 0.6rem;
+}
+@media (max-width: 750px) {
+  .card {
+    height: 3rem;
+    width: 100%;
+    margin: 1.2rem auto;
+    padding: 0.4rem;
+    font-size: 1rem;
+  }
+  .name {
+    font-size: 2rem;
+  }
+  .manolri {
+    font-size: 1.3rem;
+    margin-bottom: 1rem;
+  }
+  .tafsiv {
+    font-size: 1.6rem;
+  }
+  .manolri2 {
+    width: 95%;
+    font-size: 1.3rem;
+    margin: 0.7rem auto;
+    color: #555;
+    margin-bottom: 1rem;
+  }
+  .audio {
+    display: block;
+    margin: 7px auto;
+    width: 71%;
+    height: 30px;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid black;
+  }
+  .tafsiv {
+    width: 90%;
+    font-size: 1.4rem;
+    margin: 0 auto;
+    color: black;
+    margin-left: 1rem;
+  }
+  .box__Left {
+    width: 36%;
+  }
+  .yozuvKurinish {
+    margin: 1rem;
+  }
+  .name {
+    font-size: 1.5rem;
+    margin-left: 3rem;
+  }
+}
+@media (max-width: 350px) {
+  .btnMenu {
+    display: block;
+    margin-top: -0.5rem;
+    margin-left: -0.8rem;
+  }
+  .box__Left {
+    display: none;
+    opacity: 0;
+    transition: 0.8s all ease-in-out;
+  }
+  .yozuvKurinish {
+    margin: 0;
+  }
 }
