@@ -60,16 +60,16 @@ const renderFunc = (obj, uzb, nomi) => {
     div.appendChild(p2);
     Suralar.append(div);
     div.addEventListener("click", () => {
-      console.log(ArrBox);
       box__Right.style.display = "block";
       yozuvKurinish.innerHTML = "";
       findEl = div.id;
       let filter = ArrBox.find((val) => {
         return val.data.name.transliteration.en == findEl;
       });
-      for (let i = 1; i < ArrBox.length; i++) {
+
+      for (let i = 0; i < ArrBox.length; i++) {
         let parag = ` 
-        <p class="manolri">${i} ${filter.data.verses[i].text.arab}</p>
+        <p class="manolri">${i + 1} ${filter.data.verses[i].text.arab}</p>
         <p class="manolri">${filter.data.verses[i].text.transliteration.en}</p>
         <p class="tafsiv">English</p>
         <p class="manolri2">${filter.data.verses[i].translation.en}</p>
